@@ -11,10 +11,12 @@ import type {
 } from "react-leaflet";
 import type L from "leaflet";
 
-// Dynamically import the Map components with no SSR
-const MapContainer = dynamic(
-  () => import("react-leaflet").then((mod) => mod.MapContainer),
-  { ssr: false }
+// Dynamically import the Map components with no SSR and move it to a separate component
+const Map = dynamic(
+  () => import("../dashboard/Map").then((mod) => mod.default),
+  {
+    ssr: false,
+  }
 );
 
 const TileLayerComponent = dynamic(
@@ -74,77 +76,6 @@ const ShipmentLocation = ({
   );
 };
 
-const MapComponent = () => {
-  const [isFullscreen, setIsFullscreen] = useState(false);
-
-  // Create custom icon using Lucide icon as HTML
-  const createCustomIcon = (color: string) => {
-    if (typeof window === "undefined") return null;
-
-    const L = require("leaflet");
-    return L.divIcon({
-      html: `<svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none" stroke="${color}" stroke-width="2" stroke-linecap="round" stroke-linejoin="round" class="lucide lucide-map-pin"><path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/><circle cx="12" cy="10" r="3"/></svg>`,
-      className: "custom-marker",
-      iconSize: [24, 24],
-      iconAnchor: [12, 24],
-    });
-  };
-
-  // Sample delivery points
-  const deliveryPoints = [
-    { position: [51.5074, -0.1278], name: "London", color: "#3B82F6" },
-    { position: [55.9533, -3.1883], name: "Edinburgh", color: "#8B5CF6" },
-  ];
-
-  const toggleFullscreen = () => {
-    setIsFullscreen(!isFullscreen);
-  };
-
-  // Only render the map on the client side
-  if (typeof window === "undefined") {
-    return (
-      <div className="h-[300px] bg-gray-100 rounded-lg flex items-center justify-center">
-        <p className="text-gray-500">Loading map...</p>
-      </div>
-    );
-  }
-
-  return (
-    <div
-      className={`relative ${
-        isFullscreen ? "fixed inset-0 z-50 bg-white" : "h-[300px]"
-      }`}
-    >
-      <button
-        onClick={toggleFullscreen}
-        className="absolute top-2 right-2 z-10 bg-white px-3 py-1 rounded-md shadow-md text-sm"
-      >
-        {isFullscreen ? "Exit Fullscreen" : "Fullscreen"}
-      </button>
-      <MapContainer
-        center={[54.5, -2]}
-        zoom={5}
-        className="h-full w-full rounded-lg"
-        zoomControl={false}
-      >
-        <TileLayerComponent
-          attribution='&copy; <a href="https://www.openstreetmap.org/copyright">OpenStreetMap</a> contributors'
-          url="https://{s}.tile.openstreetmap.org/{z}/{x}/{y}.png"
-        />
-        <ZoomControlComponent position="bottomright" />
-
-        {deliveryPoints.map((point, index) => (
-          <MarkerComponent
-            key={index}
-            position={point.position as L.LatLngExpression}
-            icon={createCustomIcon(point.color)}
-          />
-        ))}
-      </MapContainer>
-    </div>
-  );
-};
-
 export const ShipmentTracker = () => {
   return (
     <div className="grid grid-cols-2 gap-6 mb-8">
@@ -164,7 +95,7 @@ export const ShipmentTracker = () => {
 
       <div>
         <h2 className="text-lg font-semibold mb-4">On the Way</h2>
-        <MapComponent />
+        <Map />
 
         <div className="grid grid-cols-5 gap-4 mt-4">
           <div>
