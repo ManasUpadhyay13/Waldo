@@ -1,37 +1,13 @@
 "use client";
 
-import { Truck, MapPin } from "lucide-react";
+import { Truck } from "lucide-react";
 import dynamic from "next/dynamic";
-import { useState } from "react";
-import type {
-  MapContainer as MapContainerType,
-  TileLayer,
-  ZoomControl,
-  Marker,
-} from "react-leaflet";
-import type L from "leaflet";
-
 // Dynamically import the Map components with no SSR and move it to a separate component
 const Map = dynamic(
   () => import("../dashboard/Map").then((mod) => mod.default),
   {
     ssr: false,
   }
-);
-
-const TileLayerComponent = dynamic(
-  () => import("react-leaflet").then((mod) => mod.TileLayer),
-  { ssr: false }
-);
-
-const ZoomControlComponent = dynamic(
-  () => import("react-leaflet").then((mod) => mod.ZoomControl),
-  { ssr: false }
-);
-
-const MarkerComponent = dynamic(
-  () => import("react-leaflet").then((mod) => mod.Marker),
-  { ssr: false }
 );
 
 interface ShipmentLocationProps {

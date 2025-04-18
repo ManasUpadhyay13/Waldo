@@ -4,14 +4,8 @@ import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, ZoomControl, Marker } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
-import { useShipment } from "@/contexts/ShipmentContext";
 
-interface MapProps {
-  // Add any props if needed
-}
-
-const Map: React.FC<MapProps> = () => {
-  const { isMapVisible } = useShipment();
+const Map: React.FC = () => {
   const [isMounted, setIsMounted] = useState(false);
 
   useEffect(() => {

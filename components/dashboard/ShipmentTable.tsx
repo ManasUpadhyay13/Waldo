@@ -173,10 +173,6 @@ export const ShipmentTable = () => {
     setIsOpen(true);
   };
 
-  const handleDelete = (productId: string) => {
-    setShipments(shipments.filter((s) => s.productId !== productId));
-  };
-
   const downloadCSV = () => {
     const headers = [
       "Product ID",

@@ -13,14 +13,11 @@ export default function DashboardPage() {
               Welcome back, Max
             </h1>
             <p className="text-gray-600 mt-1">
-              Here's what's happening with your store today.
+              Here&apos;s what&apos;s happening with your store today.
             </p>
           </div>
 
-          {/* Period Selector */}
-          <div className="relative">
-            {/* Add your period selector component here */}
-          </div>
+          <div className="relative"></div>
         </div>
 
         {/* Stats Grid */}
