@@ -1,8 +1,12 @@
 @import "tailwindcss";
 @import "tw-animate-css";
-
+@import 'leaflet/dist/leaflet.css';
 @custom-variant dark (&:is(.dark *));
 
+.custom-marker {
+  background: none;
+  border: none;
+}
 @theme inline {
   --color-background: var(--background);
   --color-foreground: var(--foreground);
