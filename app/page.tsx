@@ -81,23 +81,23 @@ export default function Home() {
         <footer className="py-8 border-t border-gray-200">
           <div className="flex justify-between items-center">
             <p className="text-sm text-gray-600">
-              © 2024 Shipping Plus. All rights reserved.
+              © 2025 Waldo. All rights reserved.
             </p>
             <div className="flex gap-6">
               <Link
-                href="/about"
+                href="/"
                 className="text-sm text-gray-600 hover:text-gray-900"
               >
                 About
               </Link>
               <Link
-                href="/contact"
+                href="/"
                 className="text-sm text-gray-600 hover:text-gray-900"
               >
                 Contact
               </Link>
               <Link
-                href="/privacy"
+                href="/"
                 className="text-sm text-gray-600 hover:text-gray-900"
               >
                 Privacy Policy

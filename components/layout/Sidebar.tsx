@@ -47,36 +47,24 @@ export const Sidebar = () => {
           href="/dashboard"
           isActive
         />
-        <SidebarItem
-          icon={<Package size={20} />}
-          label="Product"
-          href="/products"
-        />
+        <SidebarItem icon={<Package size={20} />} label="Product" href="/" />
         <SidebarItem
           icon={<ClipboardList size={20} />}
           label="Orders"
-          href="/orders"
+          href="/"
         />
-        <SidebarItem
-          icon={<Users size={20} />}
-          label="Customers"
-          href="/customers"
-        />
+        <SidebarItem icon={<Users size={20} />} label="Customers" href="/" />
         <SidebarItem
           icon={<MessageSquare size={20} />}
           label="Manage Reviews"
-          href="/reviews"
+          href="/"
         />
         <SidebarItem
           icon={<ShoppingCart size={20} />}
           label="Checkout"
-          href="/checkout"
+          href="/"
         />
-        <SidebarItem
-          icon={<Settings size={20} />}
-          label="Settings"
-          href="/settings"
-        />
+        <SidebarItem icon={<Settings size={20} />} label="Settings" href="/" />
       </nav>
     </div>
   );

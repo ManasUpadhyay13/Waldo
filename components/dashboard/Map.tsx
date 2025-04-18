@@ -1,5 +1,6 @@
 "use client";
 
+import { useEffect, useState } from "react";
 import { MapContainer, TileLayer, ZoomControl, Marker } from "react-leaflet";
 import L from "leaflet";
 import "leaflet/dist/leaflet.css";
@@ -11,6 +12,16 @@ interface MapProps {
 
 const Map: React.FC<MapProps> = () => {
   const { isMapVisible } = useShipment();
+  const [isMounted, setIsMounted] = useState(false);
+
+  useEffect(() => {
+    setIsMounted(true);
+  }, []);
+
+  // Don't render anything on the server
+  if (!isMounted) {
+    return <div className="h-[300px]" />;
+  }
 
   // Create custom icon using Lucide icon as HTML
   const createCustomIcon = (color: string) => {
